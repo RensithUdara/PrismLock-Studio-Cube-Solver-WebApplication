@@ -40,8 +40,6 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Environment and local secrets
-.env
-.env.*
 !.env.example
 *.pem
 
@@ -62,7 +60,6 @@ next-env.d.ts
 Thumbs.db
 Desktop.ini
 .idea/
-.vscode/
 *.swp
 *.swo
 
@@ -71,3 +68,4 @@ tmp/
 temp/
 *.tmp
 *.temp
+config.bat

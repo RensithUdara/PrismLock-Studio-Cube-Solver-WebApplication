@@ -15,14 +15,6 @@
   <img alt="Three.js" src="https://img.shields.io/badge/3D-Three.js-000000?style=for-the-badge&logo=threedotjs">
 </p>
 
-<pre>
-┌────────────── PrismLock Studio ──────────────┐
-│  🟦 🟩 🟥  Live scan cockpit                 │
-│  ⬜ 🟨 🟧  Manual sticker correction          │
-│  🧠 ⚡ 🎮  Cube state validation + playback  │
-└──────────────────────────────────────────────┘
-</pre>
-
 </div>
 
 ---
