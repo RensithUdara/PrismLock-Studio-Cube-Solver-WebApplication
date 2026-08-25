@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Next.js / React build output
+.next/
+out/
+build/
+dist/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Package manager caches
+.npm/
+.pnpm-store/
+
+# Deployment / hosting
+.vercel/
+.netlify/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
