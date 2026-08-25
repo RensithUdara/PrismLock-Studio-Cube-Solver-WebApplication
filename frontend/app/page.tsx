@@ -132,6 +132,66 @@ const pageExpansionStyles = `
     padding-top: clamp(34px, 5vw, 76px);
     padding-bottom: clamp(34px, 5vw, 76px);
     margin-bottom: 0;
+    grid-template-columns: minmax(520px, 0.95fr) minmax(700px, 1.05fr);
+  }
+
+  .home-hero .pill {
+    padding: 12px 18px;
+    font-size: 0.88rem;
+  }
+
+  .home-hero .hero-title {
+    max-width: 760px;
+    font-size: clamp(3.2rem, 6.25vw, 6.5rem);
+  }
+
+  .home-hero .hero-copy {
+    max-width: 680px;
+    font-size: 1.26rem;
+    line-height: 1.65;
+  }
+
+  .home-hero .button {
+    min-height: 52px;
+    padding-inline: 24px;
+    font-size: 1.05rem;
+  }
+
+  .home-hero .metric-strip {
+    max-width: 700px;
+    gap: 14px;
+  }
+
+  .home-hero .metric {
+    min-height: 118px;
+    padding: 18px;
+  }
+
+  .home-hero .metric-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .home-hero .metric strong {
+    font-size: 1.28rem;
+  }
+
+  .home-hero .metric span {
+    font-size: 0.9rem;
+  }
+
+  .home-hero .cube-stage {
+    min-height: 650px;
+  }
+
+  .home-hero .stage-panel {
+    width: min(100%, 775px);
+    min-height: 625px;
+  }
+
+  .home-hero .radar-ring {
+    width: 540px;
+    height: 540px;
   }
 
   .feature-showcase {
@@ -420,8 +480,37 @@ const pageExpansionStyles = `
   @media (max-width: 640px) {
     .home-hero {
       min-height: calc(100vh - 116px);
+      grid-template-columns: 1fr;
       padding-top: 42px;
       padding-bottom: 44px;
+    }
+
+    .home-hero .hero-title {
+      font-size: 2.45rem;
+    }
+
+    .home-hero .hero-copy,
+    .home-hero .button,
+    .home-hero .metric span {
+      font-size: inherit;
+    }
+
+    .home-hero .button {
+      min-height: 42px;
+      padding-inline: 18px;
+    }
+
+    .home-hero .metric-strip {
+      max-width: none;
+    }
+
+    .home-hero .stage-panel {
+      min-height: 440px;
+    }
+
+    .home-hero .radar-ring {
+      width: 430px;
+      height: 430px;
     }
 
     .scanner-lab-section,
@@ -541,7 +630,7 @@ export default function Home() {
             </div>
             <div className="cube-mount">
               <div className="radar-ring" aria-hidden="true" />
-              <AnimatedCube3D containerSize={430} />
+              <AnimatedCube3D containerSize={540} />
             </div>
             <div className="stage-footer">
               <span>Face order <b>U R F D L B</b></span>
