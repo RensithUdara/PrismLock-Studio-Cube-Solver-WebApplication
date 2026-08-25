@@ -85,6 +85,31 @@ const readinessItems = [
   "Correction pass",
 ];
 
+const scannerDetails = [
+  {
+    label: "Capture Assist",
+    title: "Reticle guided sampling",
+    copy: "The scanner keeps every sticker inside a clean 3x3 target and shows the live color map before you save a face.",
+  },
+  {
+    label: "Correction Lab",
+    title: "Paint exact stickers",
+    copy: "Switch faces, choose a cube color, and patch a single bad cell without restarting the scan.",
+  },
+  {
+    label: "Cube Net",
+    title: "See the whole state",
+    copy: "Track all six faces in a static cube net so missing or duplicated colors are easy to spot.",
+  },
+];
+
+const playbackDetails = [
+  "Move-by-move playback with previous and next controls",
+  "Copyable algorithm output for practice sessions",
+  "Validation checks before sending a state to the solver",
+  "Demo loading for testing the solver without a camera",
+];
+
 const sampleMoves = ["R", "U", "R'", "U'", "F2", "D", "L'", "B", "U2", "R2", "F", "L2"];
 
 function generateScramble() {
@@ -132,6 +157,7 @@ export default function Home() {
         <nav className="nav-links" aria-label="Primary">
           <a className="active" href="#workflow">Workflow</a>
           <a href="#workflow">Features</a>
+          <a href="#scanner-lab">Scanner</a>
           <a href="#tools">Tools</a>
         </nav>
         <div className="nav-actions">
@@ -234,6 +260,70 @@ export default function Home() {
             <h3>Step sequence panel</h3>
             <p>Jump to any move and copy the full algorithm for practice.</p>
             <div className="card-visual bolt-visual" aria-hidden="true" />
+          </article>
+        </div>
+      </section>
+
+      <section className="scanner-lab-section" id="scanner-lab" aria-label="Scanner workspace details">
+        <div className="section-heading wide-heading">
+          <p className="eyebrow">Scanner workspace</p>
+          <h2>Everything needed between camera input and a valid cube state</h2>
+          <p>
+            PrismLock keeps the solving flow visible: capture progress, cube net,
+            correction controls, and final solver readiness all stay close together.
+          </p>
+        </div>
+        <div className="scanner-lab-grid">
+          <div className="scanner-preview-panel">
+            <div className="preview-toolbar">
+              <span>Live scan plane</span>
+              <b>Face U</b>
+            </div>
+            <div className="preview-reticle" aria-hidden="true">
+              {Array.from({ length: 9 }).map((_, index) => (
+                <span key={index} />
+              ))}
+            </div>
+            <div className="preview-swatches" aria-hidden="true">
+              {["#ffffff", "#ffd928", "#ff9630", "#ff4138", "#1677ff", "#35c46d"].map((color) => (
+                <i key={color} style={{ background: color }} />
+              ))}
+            </div>
+          </div>
+          <div className="scanner-detail-list">
+            {scannerDetails.map((item) => (
+              <article key={item.title}>
+                <span>{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="playback-section" aria-label="Solution playback details">
+        <div className="section-heading">
+          <p className="eyebrow">Solution control</p>
+          <h2>From solved state to practice routine</h2>
+        </div>
+        <div className="playback-grid">
+          <article className="algorithm-card">
+            <span className="status-pill">Sample output</span>
+            <h3>R U R&apos; U&apos; F2 D L&apos; B U2</h3>
+            <div className="algorithm-rail" aria-hidden="true">
+              {["R", "U", "R'", "U'", "F2", "D", "L'", "B", "U2"].map((move, index) => (
+                <span className={index === 2 ? "current" : ""} key={`${move}-${index}`}>{move}</span>
+              ))}
+            </div>
+          </article>
+          <article className="playback-checks">
+            {playbackDetails.map((item, index) => (
+              <div key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{item}</p>
+              </div>
+            ))}
           </article>
         </div>
       </section>
