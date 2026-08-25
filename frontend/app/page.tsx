@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useMemo, useState } from "react";
 
 const AnimatedCube3D = dynamic(() => import("@/components/AnimatedCube3D"), {
   ssr: false,
@@ -46,7 +47,84 @@ function BrandLockup() {
   );
 }
 
+const workflowSteps = [
+  {
+    number: "01",
+    label: "Capture",
+    title: "Lock every visible sticker",
+    detail: "Use the reticle and live color map to sample one clean face at a time.",
+    commands: ["Camera preview", "9-cell reticle", "Face order guide"],
+  },
+  {
+    number: "02",
+    label: "Correct",
+    title: "Repair noisy samples",
+    detail: "Paint any misread sticker before solving so the final cube state stays valid.",
+    commands: ["Sticker paint lab", "Color inventory", "Undo face"],
+  },
+  {
+    number: "03",
+    label: "Validate",
+    title: "Check the cube state",
+    detail: "Balance all six colors and confirm the scanner has a complete 54-cell state.",
+    commands: ["6-face net", "Center check", "Readiness checks"],
+  },
+  {
+    number: "04",
+    label: "Solve",
+    title: "Play the algorithm",
+    detail: "Run the Kociemba solver, step through each move, and copy the sequence.",
+    commands: ["Move playback", "Copy algorithm", "Practice mode"],
+  },
+];
+
+const readinessItems = [
+  "Balanced light",
+  "Cube centered",
+  "Six faces captured",
+  "Correction pass",
+];
+
+const sampleMoves = ["R", "U", "R'", "U'", "F2", "D", "L'", "B", "U2", "R2", "F", "L2"];
+
+function generateScramble() {
+  return [...sampleMoves]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 10)
+    .join(" ");
+}
+
 export default function Home() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [scramble, setScramble] = useState("R U R' U' F2 D L' B U2 R2");
+  const [copied, setCopied] = useState(false);
+  const [checkedItems, setCheckedItems] = useState([0, 1]);
+
+  const moves = useMemo(
+    () => scramble.trim().split(/\s+/).filter(Boolean),
+    [scramble],
+  );
+
+  const toggleReadiness = (index: number) => {
+    setCheckedItems((current) =>
+      current.includes(index)
+        ? current.filter((item) => item !== index)
+        : [...current, index],
+    );
+  };
+
+  const copyScramble = async () => {
+    if (!scramble.trim()) {
+      return;
+    }
+
+    await navigator.clipboard.writeText(scramble);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1200);
+  };
+
+  const selectedStep = workflowSteps[activeStep];
+
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -54,7 +132,7 @@ export default function Home() {
         <nav className="nav-links" aria-label="Primary">
           <a className="active" href="#workflow">Workflow</a>
           <a href="#workflow">Features</a>
-          <a href="#workspace">Workspace</a>
+          <a href="#tools">Tools</a>
         </nav>
         <div className="nav-actions">
           <button className="icon-button" aria-label="Theme settings" type="button">
@@ -157,6 +235,125 @@ export default function Home() {
             <p>Jump to any move and copy the full algorithm for practice.</p>
             <div className="card-visual bolt-visual" aria-hidden="true" />
           </article>
+        </div>
+      </section>
+
+      <section className="studio-tools" id="tools" aria-label="Studio tools">
+        <article className="tool-panel workflow-inspector">
+          <div className="tool-heading">
+            <p className="eyebrow">Workflow inspector</p>
+            <h2>Choose the next station</h2>
+          </div>
+          <div className="step-tabs" role="tablist" aria-label="Workflow stages">
+            {workflowSteps.map((step, index) => (
+              <button
+                className={index === activeStep ? "step-tab active" : "step-tab"}
+                key={step.number}
+                onClick={() => setActiveStep(index)}
+                type="button"
+                role="tab"
+                aria-selected={index === activeStep}
+              >
+                <span>{step.number}</span>
+                {step.label}
+              </button>
+            ))}
+          </div>
+          <div className="active-step-card">
+            <span className="status-pill">Active lane</span>
+            <h3>{selectedStep.title}</h3>
+            <p>{selectedStep.detail}</p>
+            <div className="command-list">
+              {selectedStep.commands.map((command) => (
+                <span key={command}>{command}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <article className="tool-panel scramble-tool">
+          <div className="tool-heading">
+            <p className="eyebrow">Practice utility</p>
+            <h2>Scramble pad</h2>
+          </div>
+          <label className="scramble-input">
+            <span>Algorithm</span>
+            <textarea
+              value={scramble}
+              onChange={(event) => setScramble(event.target.value)}
+              rows={3}
+              spellCheck={false}
+            />
+          </label>
+          <div className="move-chip-row" aria-label="Parsed moves">
+            {moves.length ? (
+              moves.map((move, index) => (
+                <span className="move-chip" key={`${move}-${index}`}>{move}</span>
+              ))
+            ) : (
+              <span className="empty-chip">No moves yet</span>
+            )}
+          </div>
+          <div className="tool-actions">
+            <button className="button primary" onClick={() => setScramble(generateScramble())} type="button">
+              Generate
+            </button>
+            <button className="button ghost" onClick={copyScramble} type="button">
+              {copied ? "Copied" : "Copy"}
+            </button>
+            <button className="button ghost" onClick={() => setScramble("")} type="button">
+              Clear
+            </button>
+            <span className="move-count">{moves.length} moves</span>
+          </div>
+        </article>
+
+        <article className="tool-panel readiness-panel">
+          <div className="tool-heading">
+            <p className="eyebrow">Capture readiness</p>
+            <h2>Pre-scan checks</h2>
+          </div>
+          <div className="readiness-list">
+            {readinessItems.map((item, index) => {
+              const active = checkedItems.includes(index);
+              return (
+                <button
+                  className={active ? "readiness-item active" : "readiness-item"}
+                  key={item}
+                  onClick={() => toggleReadiness(index)}
+                  type="button"
+                  aria-pressed={active}
+                >
+                  <span>{active ? "Ready" : "Check"}</span>
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+          <Link href="/scan" className="button primary cta-glow tool-scan">
+            <span className="scan-icon" />
+            Launch Scanner
+            <span aria-hidden="true">-&gt;</span>
+          </Link>
+        </article>
+      </section>
+
+      <section className="telemetry-strip" aria-label="Studio status">
+        <div>
+          <span>Scanner</span>
+          <strong>Guided capture</strong>
+        </div>
+        <div>
+          <span>Solver</span>
+          <strong>Kociemba core</strong>
+        </div>
+        <div>
+          <span>State model</span>
+          <strong>54 sticker cells</strong>
+        </div>
+        <div>
+          <span>Playback</span>
+          <strong>Step controls</strong>
         </div>
       </section>
     </main>
