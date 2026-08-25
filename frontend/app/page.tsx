@@ -52,8 +52,8 @@ const workflowSteps = [
     number: "01",
     label: "Capture",
     title: "Lock every visible sticker",
-    detail: "Use the reticle and live color map to sample one clean face at a time.",
-    commands: ["Camera preview", "9-cell reticle", "Face order guide"],
+    detail: "Use the reticle, face order guide, and live swatches to sample one clean side at a time.",
+    commands: ["Camera preview", "9-cell reticle", "Live swatches"],
   },
   {
     number: "02",
@@ -103,6 +103,13 @@ const scannerDetails = [
   },
 ];
 
+const featureNotes = [
+  "Face order: U R F D L B",
+  "Manual color repair before solving",
+  "State validation for all 54 stickers",
+  "Step playback for every generated move",
+];
+
 const playbackDetails = [
   "Move-by-move playback with previous and next controls",
   "Copyable algorithm output for practice sessions",
@@ -121,20 +128,44 @@ function generateScramble() {
 
 const pageExpansionStyles = `
   .home-hero {
-    min-height: 720px;
-    padding-top: clamp(64px, 7vw, 104px);
-    padding-bottom: 70px;
+    min-height: calc(100vh - 78px);
+    padding-top: clamp(34px, 5vw, 76px);
+    padding-bottom: clamp(34px, 5vw, 76px);
+    margin-bottom: 0;
   }
 
   .feature-showcase {
-    margin-top: 18px;
-    margin-bottom: 42px;
-    padding-top: clamp(34px, 5vw, 64px);
-    padding-bottom: clamp(38px, 5vw, 64px);
+    scroll-margin-top: 92px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+    padding-top: clamp(26px, 4vw, 44px);
+    padding-bottom: clamp(28px, 4vw, 44px);
   }
 
   .feature-heading {
-    margin-bottom: 34px;
+    max-width: 960px;
+    margin-bottom: 24px;
+  }
+
+  .feature-note-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .feature-note-row span {
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid rgba(36, 226, 184, 0.22);
+    border-radius: 999px;
+    color: var(--soft);
+    background: rgba(36, 226, 184, 0.07);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
   }
 
   .section-heading {
@@ -161,8 +192,8 @@ const pageExpansionStyles = `
 
   .scanner-lab-section,
   .playback-section {
-    margin: 0 clamp(18px, 4vw, 28px) 46px;
-    padding: clamp(40px, 6vw, 76px) clamp(18px, 4vw, 58px);
+    margin: 0 clamp(18px, 4vw, 28px) 28px;
+    padding: clamp(30px, 4vw, 52px) clamp(18px, 4vw, 46px);
     border: 1px solid rgba(36, 226, 184, 0.2);
     border-radius: 18px;
     background:
@@ -177,13 +208,13 @@ const pageExpansionStyles = `
     grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1.1fr);
     gap: clamp(20px, 4vw, 48px);
     align-items: stretch;
-    margin-top: 38px;
+    margin-top: 28px;
   }
 
   .scanner-preview-panel {
     position: relative;
     overflow: hidden;
-    min-height: 430px;
+    min-height: 360px;
     display: grid;
     place-items: center;
     border: 1px solid rgba(36, 226, 184, 0.48);
@@ -250,12 +281,12 @@ const pageExpansionStyles = `
 
   .scanner-detail-list {
     display: grid;
-    gap: 16px;
+    gap: 12px;
   }
 
   .scanner-detail-list article {
-    min-height: 126px;
-    padding: 22px;
+    min-height: 106px;
+    padding: 18px;
     border: 1px solid var(--line);
     border-radius: 14px;
     background:
@@ -289,13 +320,13 @@ const pageExpansionStyles = `
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
     gap: 18px;
-    margin-top: 34px;
+    margin-top: 26px;
   }
 
   .algorithm-card,
   .playback-checks {
-    min-height: 310px;
-    padding: 26px;
+    min-height: 248px;
+    padding: 22px;
     border: 1px solid rgba(155, 124, 255, 0.34);
     border-radius: 18px;
     background:
@@ -305,7 +336,7 @@ const pageExpansionStyles = `
   }
 
   .algorithm-card h3 {
-    margin: 24px 0 30px;
+    margin: 18px 0 22px;
     font-family: "JetBrains Mono", monospace;
     font-size: clamp(1.6rem, 3vw, 3rem);
     line-height: 1.2;
@@ -372,11 +403,11 @@ const pageExpansionStyles = `
   }
 
   .studio-tools {
-    margin-bottom: 46px;
+    margin-bottom: 28px;
   }
 
   .telemetry-strip {
-    margin-bottom: 84px;
+    margin-bottom: 46px;
   }
 
   @media (max-width: 980px) {
@@ -388,14 +419,15 @@ const pageExpansionStyles = `
 
   @media (max-width: 640px) {
     .home-hero {
-      min-height: auto;
+      min-height: calc(100vh - 116px);
       padding-top: 42px;
       padding-bottom: 44px;
     }
 
     .scanner-lab-section,
     .playback-section {
-      padding: 30px 14px;
+      margin-bottom: 20px;
+      padding: 28px 14px;
     }
 
     .scanner-preview-panel,
@@ -523,6 +555,11 @@ export default function Home() {
         <div className="feature-heading">
           <p className="eyebrow">Modern solving workflow</p>
           <h2>Built for messy real-world scans</h2>
+          <div className="feature-note-row" aria-label="Workflow details">
+            {featureNotes.map((note) => (
+              <span key={note}>{note}</span>
+            ))}
+          </div>
         </div>
         <div className="feature-grid">
           <article className="feature-tile tile-coral">
