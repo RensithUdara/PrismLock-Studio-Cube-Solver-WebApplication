@@ -330,7 +330,7 @@ button {
 .home-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  grid-template-columns: minmax(520px, 0.95fr) minmax(700px, 1.05fr);
   align-items: center;
   gap: clamp(28px, 6vw, 76px);
   min-height: calc(100vh - 78px);
@@ -367,10 +367,21 @@ button {
   text-transform: uppercase;
 }
 
+.home-hero .pill {
+  padding: 12px 18px;
+  font-size: 0.88rem;
+}
+
+.home-hero .button {
+  min-height: 52px;
+  padding-inline: 24px;
+  font-size: 1.05rem;
+}
+
 .hero-title {
   margin: 12px 0 20px;
-  max-width: 680px;
-  font-size: clamp(2.45rem, 5vw, 5.2rem);
+  max-width: 760px;
+  font-size: clamp(3.2rem, 6.25vw, 6.5rem);
   line-height: 0.98;
   letter-spacing: 0;
   background: linear-gradient(120deg, #ffffff 0%, #8ffff0 42%, #ffe15c 72%, #ff8a96 100%);
@@ -379,11 +390,11 @@ button {
 }
 
 .hero-copy {
-  max-width: 560px;
+  max-width: 680px;
   margin: 0;
   color: var(--soft);
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-size: 1.26rem;
+  line-height: 1.65;
 }
 
 .hero-actions {
@@ -396,15 +407,15 @@ button {
 .metric-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 14px;
   margin-top: 34px;
-  max-width: 560px;
+  max-width: 700px;
 }
 
 .metric {
   position: relative;
-  min-height: 94px;
-  padding: 14px;
+  min-height: 118px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
@@ -423,8 +434,8 @@ button {
 }
 
 .metric-icon {
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
   display: grid;
   place-items: center;
   margin-bottom: 10px;
@@ -457,24 +468,24 @@ button {
   display: block;
   margin-bottom: 4px;
   font-family: "JetBrains Mono", monospace;
-  font-size: 1.05rem;
+  font-size: 1.28rem;
 }
 
 .metric span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
 }
 
 .cube-stage {
-  min-height: 520px;
+  min-height: 650px;
   display: grid;
   place-items: center;
   position: relative;
 }
 
 .stage-panel {
-  width: min(100%, 620px);
-  min-height: 500px;
+  width: min(100%, 775px);
+  min-height: 625px;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(36, 226, 184, 0.72);
@@ -550,8 +561,8 @@ button {
 
 .radar-ring {
   position: absolute;
-  width: 430px;
-  height: 430px;
+  width: 540px;
+  height: 540px;
   border: 1px solid rgba(36, 226, 184, 0.2);
   border-radius: 999px;
   background:
@@ -2009,6 +2020,17 @@ button {
 
   .hero-title {
     font-size: 2.45rem;
+  }
+
+  .home-hero .button {
+    min-height: 42px;
+    padding-inline: 18px;
+    font-size: inherit;
+  }
+
+  .home-hero .pill {
+    padding: 10px 14px;
+    font-size: 0.74rem;
   }
 
   .stage-header,
