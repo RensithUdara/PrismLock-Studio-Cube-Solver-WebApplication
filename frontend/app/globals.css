@@ -22,6 +22,8 @@
   --green: #39d47f;
   --violet: #9b7cff;
   --orange: #ff9845;
+  --action: #ff5f9e;
+  --action-2: #8f7cff;
   --danger: #ff5c5c;
   --radius: 8px;
   --glow: 0 0 28px rgba(36, 226, 184, 0.34), 0 0 54px rgba(155, 124, 255, 0.18);
@@ -144,20 +146,13 @@ button {
   padding: 10px clamp(18px, 4vw, 48px);
   background:
     linear-gradient(90deg, rgba(3, 7, 19, 0.92), rgba(8, 13, 29, 0.84), rgba(3, 7, 19, 0.92));
-  border-bottom: 1px solid rgba(36, 226, 184, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(22px);
 }
 
 .topbar::after {
-  content: "";
-  position: absolute;
-  left: clamp(18px, 4vw, 48px);
-  right: clamp(18px, 4vw, 48px);
-  bottom: -1px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(36, 226, 184, 0.55), rgba(155, 124, 255, 0.38), transparent);
-  pointer-events: none;
+  content: none;
 }
 
 .brand-lockup {
@@ -195,10 +190,10 @@ button {
 }
 
 .nav-links a.active {
-  color: var(--ink);
+  color: #fff;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
-  box-shadow: 0 0 24px rgba(36, 226, 184, 0.32);
+  background: linear-gradient(135deg, var(--action), var(--action-2));
+  box-shadow: 0 0 24px rgba(255, 95, 158, 0.3);
 }
 
 .nav-links a.active::after {
@@ -223,10 +218,10 @@ button {
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  border: 1px solid rgba(36, 226, 184, 0.22);
+  border: 1px solid rgba(255, 95, 158, 0.28);
   border-radius: 999px;
   color: var(--soft);
-  background: rgba(36, 226, 184, 0.07);
+  background: rgba(255, 95, 158, 0.08);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -236,8 +231,8 @@ button {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--prism);
-  box-shadow: 0 0 12px var(--prism);
+  background: var(--action);
+  box-shadow: 0 0 12px var(--action);
 }
 
 .icon-button {
@@ -257,8 +252,8 @@ button {
 
 .icon-button:hover {
   transform: translateY(-1px);
-  border-color: rgba(36, 226, 184, 0.42);
-  background: rgba(36, 226, 184, 0.08);
+  border-color: rgba(255, 95, 158, 0.42);
+  background: rgba(255, 95, 158, 0.08);
 }
 
 .sun-icon,
@@ -356,15 +351,15 @@ button {
 
 .button.primary {
   border-color: transparent;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
+  color: #fff;
+  background: linear-gradient(135deg, var(--action), var(--action-2));
   font-weight: 700;
-  box-shadow: 0 14px 34px rgba(36, 226, 184, 0.18);
+  box-shadow: 0 14px 34px rgba(255, 95, 158, 0.2);
 }
 
 .cta-glow {
   min-width: 190px;
-  box-shadow: 0 0 24px rgba(36, 226, 184, 0.46), 0 0 34px rgba(255, 225, 92, 0.22);
+  box-shadow: 0 0 24px rgba(255, 95, 158, 0.38), 0 0 34px rgba(143, 124, 255, 0.24);
 }
 
 .button.ghost {
@@ -1128,9 +1123,9 @@ button {
 }
 
 .face-tabs button.active {
-  color: var(--ink);
+  color: #fff;
   border-color: transparent;
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
+  background: linear-gradient(135deg, var(--action), var(--action-2));
 }
 
 .paint-row {
@@ -1308,8 +1303,8 @@ button {
   display: grid;
   place-items: center;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
-  box-shadow: 0 0 22px rgba(36, 226, 184, 0.28);
+  background: linear-gradient(135deg, var(--action), var(--action-2));
+  box-shadow: 0 0 22px rgba(255, 95, 158, 0.26);
 }
 
 .feature-tile span {
@@ -1317,8 +1312,8 @@ button {
   margin-bottom: auto;
   padding: 6px 10px;
   border-radius: 999px;
-  color: #06111b;
-  background: linear-gradient(135deg, rgba(36, 226, 184, 0.95), rgba(255, 225, 92, 0.85));
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 95, 158, 0.95), rgba(143, 124, 255, 0.88));
   font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -1605,10 +1600,10 @@ button {
 }
 
 .algorithm-rail .current {
-  color: var(--ink);
+  color: #fff;
   border-color: transparent;
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
-  box-shadow: 0 0 24px rgba(36, 226, 184, 0.34);
+  background: linear-gradient(135deg, var(--action), var(--action-2));
+  box-shadow: 0 0 24px rgba(255, 95, 158, 0.3);
 }
 
 .playback-checks {
@@ -1633,8 +1628,8 @@ button {
   display: grid;
   place-items: center;
   border-radius: 999px;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
+  color: #fff;
+  background: linear-gradient(135deg, var(--action), var(--action-2));
   font-family: "JetBrains Mono", monospace;
   font-size: 0.72rem;
   font-weight: 800;
@@ -1719,20 +1714,20 @@ button {
 .step-tab span {
   display: block;
   margin-bottom: 8px;
-  color: var(--prism-2);
+  color: var(--action);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.76rem;
 }
 
 .step-tab.active {
-  color: var(--ink);
+  color: #fff;
   border-color: transparent;
-  background: linear-gradient(135deg, var(--prism), var(--prism-2));
-  box-shadow: 0 0 24px rgba(36, 226, 184, 0.34);
+  background: linear-gradient(135deg, var(--action), var(--action-2));
+  box-shadow: 0 0 24px rgba(255, 95, 158, 0.3);
 }
 
 .step-tab.active span {
-  color: rgba(7, 16, 24, 0.7);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .active-step-card {
@@ -1886,14 +1881,14 @@ button {
 }
 
 .readiness-item.active {
-  border-color: rgba(36, 226, 184, 0.42);
-  background: linear-gradient(135deg, rgba(36, 226, 184, 0.18), rgba(93, 140, 255, 0.08));
+  border-color: rgba(255, 95, 158, 0.42);
+  background: linear-gradient(135deg, rgba(255, 95, 158, 0.16), rgba(143, 124, 255, 0.1));
 }
 
 .readiness-item.active span {
-  color: var(--ink);
+  color: #fff;
   border-color: transparent;
-  background: var(--prism);
+  background: var(--action);
 }
 
 .tool-scan {
