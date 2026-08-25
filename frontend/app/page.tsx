@@ -570,6 +570,10 @@ export default function Home() {
           <a href="#tools">Tools</a>
         </nav>
         <div className="nav-actions">
+          <span className="topbar-status">
+            <i aria-hidden="true" />
+            Ready
+          </span>
           <button className="icon-button" aria-label="Theme settings" type="button">
             <span className="sun-icon" />
           </button>
