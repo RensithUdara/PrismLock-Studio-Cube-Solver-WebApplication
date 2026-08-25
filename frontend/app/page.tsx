@@ -421,10 +421,10 @@ const pageExpansionStyles = `
   }
 
   .algorithm-rail .current {
-    color: var(--ink);
+    color: #fff;
     border-color: transparent;
-    background: linear-gradient(135deg, var(--prism), var(--prism-2));
-    box-shadow: 0 0 24px rgba(36, 226, 184, 0.34);
+    background: linear-gradient(135deg, var(--action), var(--action-2));
+    box-shadow: 0 0 24px rgba(255, 95, 158, 0.3);
   }
 
   .playback-checks {
@@ -449,8 +449,8 @@ const pageExpansionStyles = `
     display: grid;
     place-items: center;
     border-radius: 999px;
-    color: var(--ink);
-    background: linear-gradient(135deg, var(--prism), var(--prism-2));
+    color: #fff;
+    background: linear-gradient(135deg, var(--action), var(--action-2));
     font-family: "JetBrains Mono", monospace;
     font-size: 0.72rem;
     font-weight: 800;
