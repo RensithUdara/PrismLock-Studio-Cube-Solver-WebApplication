@@ -1328,6 +1328,293 @@ button {
   background: rgba(255, 255, 255, 0.32);
 }
 
+.studio-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.92fr) minmax(300px, 0.78fr);
+  gap: 16px;
+  margin: 0 clamp(18px, 4vw, 28px) 18px;
+}
+
+.tool-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: 330px;
+  padding: 24px;
+  border: 1px solid rgba(36, 226, 184, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 82% 6%, rgba(255, 95, 217, 0.18), transparent 34%),
+    radial-gradient(circle at 18% 18%, rgba(36, 226, 184, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.038)),
+    rgba(5, 10, 24, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.tool-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(36, 226, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 140, 255, 0.04) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at 40% 34%, black, transparent 72%);
+}
+
+.tool-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.tool-heading h2 {
+  margin: 5px 0 0;
+  font-size: 1.42rem;
+  letter-spacing: 0;
+}
+
+.step-tabs {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.step-tab {
+  min-height: 74px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.045);
+  cursor: pointer;
+  text-align: left;
+}
+
+.step-tab span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--prism-2);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+}
+
+.step-tab.active {
+  color: var(--ink);
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--prism), var(--prism-2));
+  box-shadow: 0 0 24px rgba(36, 226, 184, 0.34);
+}
+
+.step-tab.active span {
+  color: rgba(7, 16, 24, 0.7);
+}
+
+.active-step-card {
+  position: relative;
+  z-index: 1;
+  min-height: 152px;
+  padding: 18px;
+  border: 1px solid rgba(155, 124, 255, 0.34);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(155, 124, 255, 0.2), transparent 34%),
+    rgba(255, 255, 255, 0.055);
+}
+
+.active-step-card h3 {
+  margin: 14px 0 8px;
+  font-size: 1.3rem;
+}
+
+.active-step-card p {
+  max-width: 580px;
+  margin: 0 0 14px;
+  color: var(--soft);
+  line-height: 1.6;
+}
+
+.command-list,
+.move-chip-row,
+.tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.command-list span,
+.move-chip,
+.empty-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--soft);
+  background: rgba(255, 255, 255, 0.055);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+}
+
+.scramble-tool {
+  border-color: rgba(93, 140, 255, 0.36);
+}
+
+.scramble-input {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+}
+
+.scramble-input span,
+.move-count {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.scramble-input textarea {
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+  padding: 14px;
+  border: 1px solid rgba(93, 140, 255, 0.3);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: rgba(3, 7, 19, 0.62);
+  outline: none;
+  font-family: "JetBrains Mono", monospace;
+  line-height: 1.6;
+}
+
+.scramble-input textarea:focus {
+  border-color: var(--prism);
+  box-shadow: 0 0 0 3px rgba(36, 226, 184, 0.12);
+}
+
+.move-chip-row {
+  position: relative;
+  z-index: 1;
+  min-height: 72px;
+  align-content: flex-start;
+  margin: 14px 0;
+}
+
+.move-chip {
+  color: var(--text);
+  border-color: rgba(36, 226, 184, 0.26);
+  background: rgba(36, 226, 184, 0.09);
+}
+
+.tool-actions {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+}
+
+.move-count {
+  margin-left: auto;
+}
+
+.readiness-panel {
+  display: flex;
+  flex-direction: column;
+  border-color: rgba(255, 95, 217, 0.32);
+}
+
+.readiness-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.readiness-item {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--soft);
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.readiness-item span {
+  order: 2;
+  min-width: 62px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  color: var(--muted);
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.readiness-item.active {
+  border-color: rgba(36, 226, 184, 0.42);
+  background: linear-gradient(135deg, rgba(36, 226, 184, 0.18), rgba(93, 140, 255, 0.08));
+}
+
+.readiness-item.active span {
+  color: var(--ink);
+  border-color: transparent;
+  background: var(--prism);
+}
+
+.tool-scan {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: auto;
+}
+
+.telemetry-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 clamp(18px, 4vw, 28px) 34px;
+}
+
+.telemetry-strip div {
+  min-height: 82px;
+  padding: 16px;
+  border: 1px solid rgba(36, 226, 184, 0.2);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(36, 226, 184, 0.1), rgba(155, 124, 255, 0.075)),
+    rgba(255, 255, 255, 0.045);
+}
+
+.telemetry-strip span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.telemetry-strip strong {
+  font-size: 1.02rem;
+}
+
 .move-badge {
   display: inline-flex;
   align-items: center;
@@ -1424,7 +1711,9 @@ button {
 
   .workflow-grid,
   .feature-grid,
-  .metric-strip {
+  .metric-strip,
+  .studio-tools,
+  .telemetry-strip {
     grid-template-columns: 1fr;
   }
 
@@ -1480,6 +1769,19 @@ button {
   .net-face {
     width: 50px;
     height: 50px;
+  }
+
+  .studio-tools {
+    margin-top: 0;
+  }
+
+  .step-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .move-count {
+    width: 100%;
+    margin-left: 0;
   }
 
   .sticker-editor {
