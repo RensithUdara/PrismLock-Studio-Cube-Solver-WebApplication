@@ -68,4 +68,7 @@ tmp/
 temp/
 *.tmp
 *.temp
-config.bat
+.env
+.env.*
+.env.local
+.env.production
